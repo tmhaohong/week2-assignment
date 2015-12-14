@@ -6,7 +6,7 @@ Submitted by: **Hao Tran**
 
 Time spent: **28** hours spent in total
 
-URL: **Insert your Heroku URL here**
+URL: **http://shrouded-wave-3038.herokuapp.com/**
 
 ## User Stories
 
@@ -16,26 +16,20 @@ The following **required** functionality is complete:
 * [x] User can login using an email and password.
 * [x] After logging in, the user is taken to a page that has a list of incoming messages, sorted in descending chronological order (newest messages at top), a “new message” link, an “add friends” link, and a “sent messages” link.
 * [x] Unread messages should be bold or something similar in the list of messages.
-* [x] 
-* * [x] 
+* [x] Clicking the “add friends” link takes the user to a page with all users listed, with a link to “add user to friends list”.
+* [x] Clicking on “new message” takes the user to a page where they can write a new mesasge. The recipient field should be a dropdown, where the options are names from the user’s friends.
+* [ ] Clicking on “sent messages” takes the user to a page listing messages they have sent. Each message should display at what time it was read by the recipient, or “unread”. The user cannot read the contents of the messages.
+* [x] User can read a message’s content only once. Once the message has been read, the user will see a page indicating the message has already been read.
+* [x] User can only read messages where they are the recipient.
 
 The following **optional** features are implemented:
-* [ ] User can delete stories, with an alert that asks the user to confirm.
-* [ ] User can enter a search term and see all posts with titles that contain the search term.
-* [ ] User can add "tags" to a post, and filter posts by tag. 
-* [ ] There is a "navbar" that is responsive to window size similar to http://v4-alpha.getbootstrap.com/examples/navbar/. **NOTE**: This is currently buggy in Bootstrap v4 Alpha. For a workaround, look at the CodePen associater dhere: https://github.com/twbs/bootstrap/issues/18263. 
-* [ ] User can see how many views a post has. 
-* [ ] User can leave a comment on a post.
-
-The following **additional** features are implemented:
-
-- [ ] List anything else that you can get done to improve the app functionality!
+* [x] User A can “block” User B. If User A blocks User B, they will not see messages from User B. User B will not know they have been blocked.
 
 ## Video Walkthrough 
 
 Here's a walkthrough of implemented user stories:
 
-![Video Walkthrough](http://i.imgur.com/link/to/your/gif/file.gif)
+![Video Walkthrough](http://i.imgur.com/9HCTGJk.gifv)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
