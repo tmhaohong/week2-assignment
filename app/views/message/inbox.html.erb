@@ -1,0 +1,53 @@
+<div class="image-background">
+	<div class="container">
+		<div class="menu">
+			<div class="current_user">
+				<img src="<%= @curren_user.avatar %>" />
+				<span><%= @curren_user.name %></span>
+				<span class="email"><%= @curren_user.email %></span>
+			</div>
+			<ul>
+				<li><a class="button actived"><i class="fa fa-bars"></i>Inbox</a></li>
+				<li><a href="<%= send_path %>" class="button"><i class="fa fa-paper-plane"></i>Send message</a></li>
+				<li class="line"></li>
+				<li><a href="<%= friend_list_path %>" class="button"><i class="fa fa-users"></i>Friend list</a></li>
+				<li><a href="<%= block_list_path %>" class="button"><i class="fa fa-user-times"></i>Block list</a></li>
+				<li class="line"></li>
+				<li><a href="<%= signout_path %>" class="button signout"><i class="fa fa-sign-out"></i>Sign out</a></li>
+			</ul>
+		</div>
+		<div class="contents message_list">
+			<ul>
+				<% 
+				@list_message .each do |message|
+					sender = User.find(message.sender)
+
+					blockeds = Block.where(blocker: @curren_user.id).pluck(:blocked)
+					unless blockeds.include?(sender.id)
+				%>
+					<li>
+						<% 
+							if message.sender == @curren_user.id 
+								receiver = User.find(message.receiver)
+						%>
+							<a class="sender" href="inbox/<%= message.id %>">
+								<span>To: </span> 
+								<img src="<%= receiver.avatar %>?<%= receiver.name %>" />
+								<span><%= receiver.name %> - <%= receiver.email %></span>
+								<span class="time"><%= message.created_at.strftime("%I:%M %p %A, %B %d %Y") %></span>
+							</a>
+							<% else %>
+							<a <% if message.isRead%>class="disabled"<% else %> href="inbox/<%= message.id %>" <% end %> >
+								<span>From: </span> 
+								<img src="<%= sender.avatar %>?<%= sender.name %>" />
+								<span><%= sender.name %> - <%= sender.email %></span>
+								<span class="time"><%= message.created_at.strftime("%I:%M %p %A, %B %d %Y") %></span>
+							</a>
+							<% end %>
+					</li>
+					<% end %>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>

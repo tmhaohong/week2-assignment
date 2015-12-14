@@ -1,0 +1,36 @@
+<div class="image-background">
+	<div class="container">
+		<div class="menu">
+			<div class="current_user">
+				<img src="<%= @curren_user.avatar %>?<%= @curren_user.name %>" />
+				<span><%= @curren_user.name %></span>
+				<span class="email"><%= @curren_user.email %></span>
+			</div>
+			<ul>
+				<li><a href="<%= inbox_path %>?asd" class="button"><i class="fa fa-bars"></i>Inbox</a></li>
+				<li><a href="<%= send_path %>" class="button"><i class="fa fa-paper-plane"></i>Send message</a></li>
+				<li class="line"></li>
+				<li><a href="<%= friend_list_path %>" class="button"><i class="fa fa-users"></i>Friend list</a></li>
+				<li><a class="button actived"><i class="fa fa-user-times"></i>Block list</a></li>
+				<li class="line"></li>
+				<li><a href="<%= signout_path %>" class="button signout"><i class="fa fa-sign-out"></i>Sign out</a></li>
+			</ul>
+		</div>
+		<div class="contents friend_list">
+			<ul class="list block">
+				<% @block_list.each do |block| %>
+				<li>
+					<img src="<%= block.avatar %>?<%= block.name %>" />
+					<div class="info">
+						<p><%= block.name %></p>
+						<p><%= block.email %></p>
+						<ul class="extra">
+							<li><a href="/friend/add/<%= block.id %>" class="add"><i class="fa fa-user-plus"></i>Add</a></li>
+						</ul>
+					</div>
+				</li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>

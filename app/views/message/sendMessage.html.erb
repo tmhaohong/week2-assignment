@@ -1,0 +1,33 @@
+<div class="image-background">
+	<div class="container">
+		<div class="menu">
+			<div class="current_user">
+				<img src="<%= @curren_user.avatar %>" />
+				<span><%= @curren_user.name %></span>
+				<span class="email"><%= @curren_user.email %></span>
+			</div>
+			<ul>
+				<li><a href="<%= inbox_path %>" class="button"><i class="fa fa-bars"></i>Inbox</a></li>
+				<li><a class="button actived"><i class="fa fa-paper-plane"></i>Send message</a></li>
+				<li class="line"></li>
+				<li><a href="<%= friend_list_path %>" class="button"><i class="fa fa-users"></i>Friend list</a></li>
+				<li><a href="<%= block_list_path %>" class="button"><i class="fa fa-user-times"></i>Block list</a></li>
+				<li class="line"></li>
+				<li><a href="<%= signout_path %>" class="button signout"><i class="fa fa-sign-out"></i>Sign out</a></li>
+			</ul>
+		</div>
+		<div class="contents">
+			<%= form_for(Message.new, url: send_path, html: {class: "send-form"}) do |f| %>
+				<fieldset>
+					<label>To: </label>
+					<%= f.select :receiver, options_for_select(@friend_list.map{ |friend| [friend.email, friend.id] }), {}, {:multiple => true} %>
+				</fieldset>
+				<fieldset>
+					<label>Message: </label>
+					<%= f.text_area "body", placeholder: "Your message" %>
+				</fieldset>
+				<%= f.submit "Send" %>
+			<% end %>
+		</div>
+	</div>
+</div>

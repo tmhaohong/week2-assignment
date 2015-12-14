@@ -1,0 +1,41 @@
+<div class="image-background">
+	<div class="container">
+		<div class="menu">
+			<div class="current_user">
+				<img src="<%= @curren_user.avatar %>?<%= @curren_user.name %>" />
+				<span><%= @curren_user.name %></span>
+				<span class="email"><%= @curren_user.email %></span>
+			</div>
+			<ul>
+				<li><a href="<%= inbox_path %>" class="button"><i class="fa fa-bars"></i>Inbox</a></li>
+				<li><a href="<%= send_path %>" class="button"><i class="fa fa-paper-plane"></i>Send message</a></li>
+				<li class="line"></li>
+				<li><a class="button actived"><i class="fa fa-users"></i>Friend list</a></li>
+				<li><a href="<%= block_list_path %>" class="button"><i class="fa fa-user-times"></i>Block list</a></li>
+				<li class="line"></li>
+				<li><a href="<%= signout_path %>" class="button signout"><i class="fa fa-sign-out"></i>Sign out</a></li>
+			</ul>
+		</div>
+		<div class="contents friend_list">
+			<%= form_for(Friend.new, url: friend_add_path, html: {class: "invite-form"}) do |f| %>
+				<%= f.select :friend, options_for_select(@user_list.map{ |user_list| [user_list.email, user_list.id] }) %>
+				<%= f.submit "Invite" %>
+			<% end %>
+
+			<ul class="list">
+				<% @friend_list.each do |friend| %>
+				<li>
+					<img src="<%= friend.avatar %>?<%= friend.name %>" />
+					<div class="info">
+						<p><%= friend.name %></p>
+						<p><%= friend.email %></p>
+						<ul class="extra">
+							<li><a href="/friend/block/<%= friend.id %>" class="block"><i class="fa fa-user-times"></i>Block</a></li>
+						</ul>
+					</div>
+				</li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>

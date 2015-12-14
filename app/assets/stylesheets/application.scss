@@ -1,0 +1,52 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,300);
+@import "font-awesome-sprockets";
+@import "font-awesome";
+body{
+	font-family: 'Roboto', sans-serif;
+	font-size: 13px;
+	color: #333;
+}
+h1,h2,h3,h4{
+	padding: 0;
+	margin: 0;
+}
+ul{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+a{
+    text-decoration: none;
+    color: #333;
+}
+.message{
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    &.error{
+    	background: #d04437;
+    	color: #fff;
+    }
+    &.success{
+    	background: #67ab49;
+    	color: #fff;
+    }
+}

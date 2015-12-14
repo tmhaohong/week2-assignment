@@ -1,0 +1,56 @@
+<div class="image-background">
+	<div class="container">
+		<div class="menu">
+			<div class="current_user">
+				<img src="<%= @curren_user.avatar %>" />
+				<span><%= @curren_user.name %></span>
+				<span class="email"><%= @curren_user.email %></span>
+			</div>
+			<ul>
+				<li><a href="<%= inbox_path %>" class="button"><i class="fa fa-bars"></i>Inbox</a></li>
+				<li><a href="<%= send_path %>" class="button"><i class="fa fa-paper-plane"></i>Send message</a></li>
+				<li class="line"></li>
+				<li><a href="<%= friend_list_path %>" class="button"><i class="fa fa-users"></i>Friend list</a></li>
+				<li><a href="<%= block_list_path %>" class="button"><i class="fa fa-user-times"></i>Block list</a></li>
+				<li class="line"></li>
+				<li><a href="<%= signout_path %>" class="button signout"><i class="fa fa-sign-out"></i>Sign out</a></li>
+			</ul>
+		</div>
+		<div class="contents message_detail">
+			<div class="detail">
+				<div class="user">
+					<% 
+						if @sender.id == @curren_user.id
+							receiver = User.find(@message.receiver)
+					%>
+						<span>To: </span>
+						<img src="<%= @sender.avatar %>?<%= receiver.name %>" />
+						<span><%= receiver.name %> - <%= receiver.email %></span>
+					<% else %>
+						<span>From: </span>
+						<img src="<%= @sender.avatar %>" />
+						<span><%= @sender.name %> - <%= @sender.email %></span>
+						<ul class="extra">
+							<%
+								friends = Friend.where(owner: @curren_user.id).pluck(:friend)
+								unless friends.include?(@sender.id)
+							%>
+								<li><a href="/friend/add/<%= @sender.id %>" class="add"><i class="fa fa-user-plus"></i>Add this friend</a></li>
+							<% end %>
+							<li><a href="/friend/block/<%= @sender.id %>" class="block"><i class="fa fa-user-times"></i>Block this user</a></li>
+						</ul>
+					<% end %>
+				</div>
+				<div class="message_detail">
+					<%= @message.body %>
+				</div>
+				<div class="info">
+					<% if @sender.id != @curren_user.id %>
+						<a><i class="fa fa-reply"></i>Reply</a>
+					<% end %>
+						<span class="time"><%= @message.created_at.strftime("%I:%M %p %A, %B %d %Y") %></span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
